@@ -16,6 +16,7 @@ namespace Bai_1._0.IServices
         string UpdateAccount(Account Acc);
         string SaveAccount();
         Guid resultGuidID(string User_Acc);
+        List<int> resultsYear();
 
     }
 }

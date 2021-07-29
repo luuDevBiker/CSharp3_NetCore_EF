@@ -17,12 +17,14 @@ namespace Bai_1._0
         private IServices.IServices _IServices;
         private Account _account;
         private Guid _ID;
+        private bool _flag = false;
         public FrmMain()
         {
             InitializeComponent();
             _IServices = new ServicesAccounts();
             _IServices.GetList();
             loadData();
+            _IServices.resultsYear().ForEach(x=> cbNamSinh.Items.Add(x));
         }
         #region Form method
         /// <summary>
@@ -179,18 +181,35 @@ namespace Bai_1._0
         {
             MessageBox.Show(_IServices.SaveAccount());
             clearForm();
+            _flag = true;
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
             MessageBox.Show(_IServices.UpdateAccount(ResultAcc(_ID)));
             clearForm();
+            _flag = true;
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
             MessageBox.Show(_IServices.DeleteAccount(ResultAcc(_ID)));
             clearForm();
+            _flag = true;
+        }
+        DialogResult x = MessageBox.Show
+        ("Lưu những thay đổi ?",
+            "Thông Báo",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Warning);
+        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (x == DialogResult.Yes)
+            {
+                _IServices.SaveAccount();
+                Application.Exit();
+            }
+            Application.Exit();
         }
     }
 }

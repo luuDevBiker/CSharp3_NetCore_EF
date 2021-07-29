@@ -93,5 +93,16 @@ namespace Bai_1._0
             return ID ;
         }
 
+        public List<int> resultsYear()
+        {
+            List<int> year = new List<int>();
+            var yearStart = 1900;
+            for (int i = yearStart; i < DateTime.Now.Year; i++)
+            {
+                year.Add(yearStart);
+            }
+
+            return year;
+        }
     }
 }
