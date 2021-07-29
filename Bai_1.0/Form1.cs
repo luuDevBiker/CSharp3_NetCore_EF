@@ -172,6 +172,7 @@ namespace Bai_1._0
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            validate();
             if (validate() == false) return;
             MessageBox.Show(_IServices.AddAccount(ResultAcc(Guid.NewGuid())));
             loadData();
@@ -186,6 +187,7 @@ namespace Bai_1._0
 
         private void btnSua_Click(object sender, EventArgs e)
         {
+            validate();
             MessageBox.Show(_IServices.UpdateAccount(ResultAcc(_ID)));
             clearForm();
             _flag = true;
@@ -193,6 +195,7 @@ namespace Bai_1._0
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
+            validate();
             MessageBox.Show(_IServices.DeleteAccount(ResultAcc(_ID)));
             clearForm();
             _flag = true;
